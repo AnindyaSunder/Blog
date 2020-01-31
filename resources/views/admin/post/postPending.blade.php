@@ -41,7 +41,7 @@
                                         <th>Status</th>
                                         <th>Approval</th>
                                         <th>Created At</th>
-                                        <th>Updated At</th>
+                                        {{-- <th>Updated At</th> --}}
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -54,7 +54,7 @@
                                         <th>Status</th>
                                         <th>Approval</th>
                                         <th>Created At</th>
-                                        <th>Updated At</th>
+                                        {{-- <th>Updated At</th> --}}
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </tfoot>
@@ -78,7 +78,7 @@
                                                 @endif    
                                             </td>
                                             <td>{{ $post->created_at }}</td>
-                                            <td>{{ $post->updated_at }}</td>
+                                            {{-- <td>{{ $post->updated_at }}</td> --}}
                                             <td class="text-center">
                                                 <button type="button" class="btn btn-warning waves-effect" onclick="approvePost({{ $post->id }})">
                                                     <i class="material-icons">new_releases</i>

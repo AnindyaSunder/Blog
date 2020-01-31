@@ -79,7 +79,7 @@
                                     </div>
                                 </div>
                                 <a href="{{ route('admin.post.index') }}" class="btn btn-danger m-t-15 waves-effect" style="padding:7px;font-size: 14px;">BACK</a>
-                                <button type="submit" class="btn btn-info m-t-15 waves-effect" style="padding:7px;font-size: 14px;">PUBLISH</button> 
+                                <button type="submit" class="btn btn-info m-t-15 waves-effect" style="padding:7px;font-size: 14px;">SUBMIT</button> 
                                 
                         </div>
                     </div>

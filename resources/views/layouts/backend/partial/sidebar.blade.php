@@ -2,7 +2,7 @@
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
-                    <img src="{{asset('public/assets/backend/images/user.png')}}" width="48" height="48" alt="User" />
+                    <img src="{{asset('public/upload/user/'.Auth::user()->image)}}" width="48" height="48" alt="User" />   
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</div>
@@ -10,7 +10,9 @@
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>                            
+                            <li><a href="{{ Auth::user()->role_id == 1 ?  route('admin.settings.index') : route('author.settings.index') }}">
+                                <i class="material-icons">settings_applications</i>Settings</a>
+                            </li>                            
                             <li role="separator" class="divider"></li>
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -63,13 +65,38 @@
                                 <span>Pending Post</span>
                             </a>
                         </li>
+                        <li class="{{ Request::is('admin/favourite') ? 'active' : '' }}">
+                            <a href="{{ route('admin.favourite.index') }}">
+                                <i class="material-icons">favorite</i>
+                                <span>Favourite Post</span>
+                            </a>
+                        </li>
+                        <li class="{{ Request::is('admin/comments') ? 'active' : '' }}">
+                            <a href="{{ route('admin.comment.index') }}">
+                                <i class="material-icons">mode_comment</i>
+                                <span>Comments</span>
+                            </a>
+                        </li>
                         <li class="{{ Request::is('admin/sbuscriber') ? 'active' : '' }}">
                             <a href="{{ route('admin.sbuscriber.index') }}">
                                 <i class="material-icons">subscriptions</i>
-                                <span>Sbuscriber</span>
+                                <span>Sbuscribers</span>
                             </a>
                         </li>
+                        <li class="{{ Request::is('admin/authors') ? 'active' : '' }}">
+                            <a href="{{ route('admin.author.index') }}">
+                                <i class="material-icons">supervisor_account</i>
+                                <span>Authors</span>
+                            </a>
+                        </li>
+
                         <li class="header">System</li>
+                        <li class="{{ Request::is('admin/settings') ? 'active' : '' }}">
+                            <a href="{{ route('admin.settings.index') }}">
+                                <i class="material-icons">settings_applications</i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
@@ -97,7 +124,25 @@
                                 <span>Post</span>
                             </a>
                         </li>
+                        <li class="{{ Request::is('author/favourite') ? 'active' : '' }}">
+                            <a href="{{ route('author.favourite.index') }}">
+                                <i class="material-icons">favorite</i>
+                                <span>Favourite Post</span>
+                            </a>
+                        </li>
+                        <li class="{{ Request::is('author/comments') ? 'active' : '' }}">
+                            <a href="{{ route('author.comment.index') }}">
+                                <i class="material-icons">mode_comment</i>
+                                <span>Comments</span>
+                            </a>
+                        </li>
                         <li class="header">System</li>
+                        <li class="{{ Request::is('author/settings') ? 'active' : '' }}">
+                            <a href="{{ route('author.settings.index') }}">
+                                <i class="material-icons">settings_applications</i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

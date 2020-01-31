@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class AuthorPostApproved extends Notification
+class AuthorPostApproved extends Notification implements ShouldQueue
 {
     use Queueable;
     public $post;
@@ -45,7 +45,7 @@ class AuthorPostApproved extends Notification
                     ->subject('Your Post Successfully Approved !')
                     ->greeting('Hello!'. $this->post->user->name)
                     ->line('Your post has been successfully approved.')
-                    ->line('YPost Title : '.$this->post->title)
+                    ->line('Post Title : '.$this->post->title)
                     ->action('View Post', url(route('author.post.show',$this->post->id)))
                     ->line('Thank you for using our application!');
     }

@@ -10,14 +10,31 @@ class AdminSubscriberController extends Controller
 {
     public function index()
     {
-    	$subscribers = Subscriber::latest()->get();
-    	return view('admin.subscriber.subscriberIndex',compact('subscribers'));
+    	try
+        {
+            $subscribers = Subscriber::latest()->get();
+            return view('admin.subscriber.subscriberIndex',compact('subscribers'));
+        }
+        catch(\Exception $e)
+            {
+                Toastr::error($e->getMessage());
+                return redirect()->back();
+            }
     }
     public function destroy($id)
     {
-    	$sbuscriber = Subscriber::findOrFail($id);
-    	$sbuscriber->delete();
-    	Toastr::success('Subscriber Successfully Deleted :)','Success');
-    	return redirect()->back();
+    	try
+        {
+            $sbuscriber = Subscriber::findOrFail($id);
+            $sbuscriber->delete();
+            Toastr::success('Subscriber Successfully Deleted :)','Success');
+            return redirect()->back();
+        }
+        catch(\Exception $e)
+            {
+                Toastr::error($e->getMessage());
+                return redirect()->back();
+            }
     }
 }
+

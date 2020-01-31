@@ -30,7 +30,7 @@ p{ line-height: 1.6; font-family: 'Maven Pro', sans-serif; font-weight: 400; col
 
 h1{ font-size: 4em; line-height: 1; }
 h2{ font-size: 2.8em; line-height: 1.1; }
-h3{ font-size: 2em; }
+h3{ font-size: 1.5em; }
 h4{ font-size: 1.2em; }
 h5{ font-size: 1.1em; }
 h6{ font-size: .9em; letter-spacing: 1px; }
@@ -139,8 +139,27 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width
 4. SLIDER
 --------------------------------- */
 
-.slider{ height: 300px; width: 100%; background-image: url(../../images/slider-1.jpg); background-size: cover; }  
+.main-slider{ width: 100%; padding-right: 150px; }  
  
+.main-slider{ overflow: hidden; position: relative; }
+
+.main-slider .swiper-container{ overflow: visible; }
+
+.main-slider .category{ position: absolute; top: 0; bottom: 0; left: 0; right: 0; z-index: 1; color: #fff; }
+ 
+.main-slider .category:after{ content:''; position: absolute; top: 0; bottom: 0; left: 0; right: 0; z-index: -1; 
+	background: rgba(0,0,0,.4); } 
+
+
+/* SLIDER CONTROLER */
+
+.main-slider .swiper-button-prev, 
+.main-slider .swiper-button-next{ top: 0; bottom: 0; width: auto; margin: 0; background: none; font-size: 4em; 
+	top: 50%; margin-top: -50px; height: 100px; color: #fff; }
+
+.main-slider .swiper-button-prev{ left: 20px; }
+
+.main-slider .swiper-button-next{ right: 20px; }
 
  
 /* ---------------------------------

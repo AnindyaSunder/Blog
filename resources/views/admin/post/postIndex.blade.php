@@ -6,11 +6,7 @@
     <!-- JQuery DataTable Css -->
     <link href="{{ asset ('public/assets/backend/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')}}" rel="stylesheet" />
 
-@endpush
-
-
-@section('content')
-    
+@endpush    
 
 @section('content')
     <div class="container-fluid">
@@ -41,7 +37,7 @@
                                         <th>Status</th>
                                         <th>Approval</th>
                                         <th>Created At</th>
-                                        <th>Updated At</th>
+                                        {{-- <th>Updated At</th> --}}
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -54,7 +50,7 @@
                                         <th>Status</th>
                                         <th>Approval</th>
                                         <th>Created At</th>
-                                        <th>Updated At</th>
+                                        {{-- <th>Updated At</th> --}}
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </tfoot>
@@ -77,8 +73,8 @@
                                                     <span class="badge bg-pink">Pending</span>
                                                 @endif    
                                             </td>
-                                            <td>{{ $post->created_at }}</td>
-                                            <td>{{ $post->updated_at }}</td>
+                                            <td>{{ $post->created_at->toFormattedDateString() }}</td>
+                                            {{-- <td>{{ $post->updated_at }}</td> --}}
                                             <td class="text-center">
                                                 <a href="{{ route('admin.post.show',$post->id) }}" class="btn btn-success btn-sm waves-effect">
                                                     <i class="material-icons">visibility</i>

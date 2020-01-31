@@ -55,8 +55,8 @@ class TagController extends Controller
             }
             catch(\Exception $e)
             {
-                $msg = "Catched a Problem to Tag Creating";
-                return view("error", $e->msg());
+                Toastr::error($e->getMessage());
+                return redirect()->back();
             }
         }
         else
@@ -114,8 +114,8 @@ class TagController extends Controller
             }
             catch(\Exception $e)
             {
-                $msg = "Catched a Problem to Tag Updating";
-                return view("error", $e->msg());
+                Toastr::error($e->getMessage());
+                return redirect()->back();
             }
         }
         else

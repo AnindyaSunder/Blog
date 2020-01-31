@@ -68,12 +68,12 @@ class PostController extends Controller
                 {
                     
 
-                    $originalImage = $request->file('image');
-                    $thumbnailImage = Image::make($originalImage);
-                    $originalPath = public_path().'/upload/post/';
-                    $thumbnailImage->resize(1600,1066);
-                    $imagename = time().$originalImage->getClientOriginalName();
-                    $thumbnailImage->save($originalPath.$imagename);
+                  $originalImage = $request->file('image');
+                  $thumbnailImage = Image::make($originalImage);
+                  $originalPath = public_path().'/upload/post/';
+                  $thumbnailImage->resize(1600,1066);
+                  $imagename = time().$originalImage->getClientOriginalName();
+                  $thumbnailImage->save($originalPath.$imagename);
                 }
 
                 $post = new Post();
@@ -108,8 +108,8 @@ class PostController extends Controller
             }
             catch(\Exception $e)
             {
-                Toastr::error($e->getMessage());
-                return redirect()->back();
+              Toastr::error($e->getMessage());
+              return redirect()->back();
             }
         }
         else
@@ -187,7 +187,8 @@ class PostController extends Controller
                 }
                 else
                 {
-                    $post->image = $imagename;
+                  
+                  $imagename = $post->image;
                 }
 
                 
@@ -233,27 +234,44 @@ class PostController extends Controller
     public function approval($id)
     {
         $post = Post::find($id);
-        if ($post->is_approved == false)
+        if($post)
         {
-         $post->is_approved = true;
-         $post->save();
-
-         $post->user->notify(new AuthorPostApproved($post));
-
-         $subscribers = Subscriber::all();
-            foreach ($subscribers as $subscriber) 
+          try
+          {
+            if ($post->is_approved == false)
             {
-              Notification::route('mail', $subscriber->email)
-                ->notify(new NewPostNotify($post));
+              $post->is_approved = true;
+              $post->save();
+
+              $post->user->notify(new AuthorPostApproved($post));
+
+              $subscribers = Subscriber::all();
+                foreach ($subscribers as $subscriber) 
+                {
+                  Notification::route('mail', $subscriber->email)
+                    ->notify(new NewPostNotify($post));
+                }
+              
+              Toastr::success('This Post Successfully Approved','success'); 
             }
-            
-         Toastr::success('This Post Successfully Approved','success'); 
+            else
+            {
+              Toastr::info('This Post is already Approved','info');
+            }
+            return redirect()->route('admin.post.pending'); 
+          }
+          catch(\Exception $e)
+          {
+                Toastr::error($e->getMessage());
+                return redirect()->back();
+          }
+
         }
         else
         {
-            Toastr::info('This Post is already Approved','info');
+          return redirect()->back();
+
         }
-        return redirect()->route('admin.post.pending'); 
     }
 
     /**

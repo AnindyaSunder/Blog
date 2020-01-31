@@ -79,8 +79,8 @@ class CategoryController extends Controller
             }
             catch(\Exception $e)
             {
-                $msg = "Catched a Problem to Category Creating";
-                return view("error", $e->msg());
+                Toastr::error($e->getMessage());
+                return redirect()->back();
             }
         }
         else
@@ -182,8 +182,8 @@ class CategoryController extends Controller
               }
             catch(\Exception $e)
             {
-              $msg = "Catched a Problem to Category Updating";
-              return view("error", $e->msg());
+                Toastr::error($e->getMessage());
+                return redirect()->back();
             }
         }
         else
@@ -216,10 +216,10 @@ class CategoryController extends Controller
             return redirect()->route('admin.category.index');
           }
           catch(\Exception $e)
-          {
-            $msg = "Catched a Problem to Category Delating";
-            return view("error", $e->msg());
-          }
+            {
+                Toastr::error($e->getMessage());
+                return redirect()->back();
+            }
         }
         else
         {
